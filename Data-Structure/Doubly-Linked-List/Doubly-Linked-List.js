@@ -98,6 +98,21 @@ class DoublyLinkedList {
             return false;
         }
     }
+    insert(index, val) {
+        if (index < 0 || index > this.length) return undefined;
+        else if (index === 0) return !!this.unshift(val);
+        else if (index === this.length) return !!this.push(val);
+
+        const newNode = new Node(val);
+        const beforeNode = this.get(index - 1);
+        const afterNode = beforeNode.next;
+
+        beforeNode.next = newNode, newNode.prev = beforeNode;
+        afterNode.prev = newNode, newNode.next = afterNode;
+
+        this.length++;
+        return true;
+    }
 }
 
 
@@ -106,5 +121,6 @@ const list = new DoublyLinkedList()
 list.push('hello')
 list.push('not hello')
 list.push('bye')
+list.insert(1, 'middle')
 
-console.log(list.get(2));
+console.log(list.get(1));
