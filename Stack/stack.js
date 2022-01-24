@@ -44,7 +44,6 @@ class StackWithLinkedList {
       this.last = null;
     }
     this.first = this.first.next;
-
     this.size--;
     return removedNode.val;
   }
